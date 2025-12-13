@@ -1,0 +1,8 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/get-url-connect' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--data '{
+"isFakeUrl": false,
+"isDisconnect": false
+}'
