@@ -1,0 +1,17 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/products/paging-item' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692daead2499566dc136806570e5375ced501c98665255f2df5502cac7dfaea3d28987b426d528ddc4a824cf24b7b6c65bc0' \
+--data '{
+    "accessToken": "726b424f6f5a6c414c66774a48644441",
+    "refreshToken": "7079464d4a4f7064505877654c4c584f",
+    "ShopId": 996917945,
+    "offset": 0,
+    "page_size": 5,
+    "update_time_from": null,
+    "update_time_to": null,
+    "item_status": [
+        "NORMAL","BANNED","UNLIST","REVIEWING","SELLER_DELETE","SHOPEE_DELETE"
+    ]
+}'
