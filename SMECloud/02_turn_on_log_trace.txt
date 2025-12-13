@@ -1,0 +1,13 @@
+curl --location 'https://actapp.misa.vn/g2/api/cs/api/dev/private/reload_config_v2' \
+--header 'content-type: application/json' \
+--header 'x-ms-token: CTY_CO_PHAN_MISA' \
+--data '{
+	"ct": 1, 
+	"bpi": "abc,xyz", 
+	"st": 1,  
+	"svsn": "actappg2-tiktokworker", 
+	"env": "g2",
+	"allowls": null, 
+	"flogall": null, 
+	"maxlenmsg": null 
+}'

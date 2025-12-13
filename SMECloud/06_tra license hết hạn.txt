@@ -1,0 +1,5 @@
+curl --location 'https://amisapp.misa.vn/APIS/IntegrationAPI/license/code/7IW17NNC?isMulti=true&isRefresh=true' \
+--header 'x-clientid: c93ceb3a-b78d-4a09-bdad-78629d4bc5ed' \
+--header 'x-clientsecret: oi4BNBFcDtoqY42bedU/VmD5nxzO2J1XxNbSh1ldXzw=' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS014647f4=010fb974047517253dfdc16c058ff6896c42ae4f575fc5bcf5bfd04921a34f2a4780f46972324542697867960870c1f126c0891f0a; x-deviceid=8973f715-9f1e-4adf-a206-ac41fa2f7a41'

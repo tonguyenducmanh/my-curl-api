@@ -1,0 +1,36 @@
+curl --location 'https://actapp.misa.vn/g2/api/extract/v1/extract/save_param' \
+--header 'Accept: application/json, text/plain, */*' \
+--header 'Accept-Language: vi' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJmZDUwNDY0MS05MjBiLTQ3ZDAtYmJjZS02ZTQzYmJjYmVlOWEiLCJ1bmEiOiJkdXllbm50LmJ0bWNAZ21haWwuY29tIiwiYXV0IjoiMSIsInVlbSI6ImR1eWVubnQuYnRtY0BnbWFpbC5jb20iLCJuYmYiOjE3NTY0MzQ0ODIsImV4cCI6MTc1NjQ4NjgwMCwiaWF0IjoxNzU2NDM0NDgyLCJpc3MiOiJNSVNBSlNDIn0.mt57T3TL4eGN4FWX9smkmWX8uWqGdJ9s-q_Uo153lF8' \
+--header 'Connection: keep-alive' \
+--header 'Cookie: _ga=GA1.1.861729019.1756434456; _ga_2B9RDZ4E89=GS2.1.s1756434456$o1$g1$t1756434481$j35$l0$h0; dbid=333c71c6-8859-4829-92f1-1f825de48c11; tid=01a65d42-ce96-4fc6-af67-6cced567b26b; x-sessionid=AuthSelf_e6d1d202ea2943c689460acecd35daba; env=g2; env_333c71c6_8859_4829_92f1_1f825de48c11_29_8_2025=g2' \
+--header 'DNT: 1' \
+--header 'Referer: https://actapp.misa.vn/app/callback?sid=AuthSelf_e6d1d202ea2943c689460acecd35daba&env=g2&tid=01a65d42-ce96-4fc6-af67-6cced567b26b&mid=fd504641-920b-47d0-bbce-6e43bbcbee9a&dbid=333c71c6-8859-4829-92f1-1f825de48c11' \
+--header 'Sec-Fetch-Dest: empty' \
+--header 'Sec-Fetch-Mode: cors' \
+--header 'Sec-Fetch-Site: same-origin' \
+--header 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36' \
+--header 'X-Device: 73a4901d604e50f6e957fad0b556249c' \
+--header 'X-MISA-Context: {"TenantId":"01a65d42-ce96-4fc6-af67-6cced567b26b","TenantCode":"KO5UKGTZ","DatabaseId":"333c71c6-8859-4829-92f1-1f825de48c11","BranchId":"42628f4d-67a0-4a1b-9762-0ac7d8c9e1b2","WorkingBook":0,"IncludeDependentBranch":"true","SessionId":"ssfd504641920b47d0bbce6e43bbcbee9a.73a4901d604e50f6e957fad0b556249c.333c71c68859482992f11f825de48c11.638920564820376838","DBType":1,"AuthType":1,"AmisSessionId":"QQB1AHQAaABTAGUAbABmAF8AZQA2AGQAMQBkADIAMAAyAGUAYQAyADkANAAzAGMANgA4ADkANAA2ADAAYQBjAGUAYwBkADMANQBkAGEAYgBhAA==","HasAgent":false,"UserType":1,"art":2,"UserId":"fd504641-920b-47d0-bbce-6e43bbcbee9a","isc":false,"Language":"vi"}' \
+--header 'sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"' \
+--header 'sec-ch-ua-mobile: ?0' \
+--header 'sec-ch-ua-platform: "Linux"' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+        "task_id": "60f81ba7-1572-4e3f-b3f7-97cb82a88202",
+        "task_state": 0,
+        "database_id": "4a432103-a6ee-438e-bb07-3c2921d945a0",
+        "tenant_id": "01a65d42-ce96-4fc6-af67-6cced567b26b",
+        "organization_unit_id": "42628f4d-67a0-4a1b-9762-0ac7d8c9e1b2",
+        "created_date": "2025-04-16T15:45:42.113113+07:00",
+        "created_by": "MISASUPPORT",
+        "user_id": "fd504641-920b-47d0-bbce-6e43bbcbee9a",
+        "email": "ducmanh14032000@gmail.com",
+        "session_data": "{\"AccountingSystem\":0,\"BranchId\":\"42628f4d-67a0-4a1b-9762-0ac7d8c9e1b2\",\"TenantId\":\"01a65d42-ce96-4fc6-af67-6cced567b26b\",\"WorkingBook\":0,\"DatabaseId\":\"4a432103-a6ee-438e-bb07-3c2921d945a0\",\"IncludeDependentBranch\":false,\"Language\":\"vi\",\"UserId\":\"fd504641-920b-47d0-bbce-6e43bbcbee9a\",\"IsDBSyncCorp\":false,\"LicenseType\":1,\"User\":{\"UserId\":\"fd504641-920b-47d0-bbce-6e43bbcbee9a\",\"Email\":\"ducmanh14032000@gmail.com\",\"unique_name\":\"\",\"FullNames\":\"MISASUPPORT\",\"FullName\":\"MISASUPPORT\"}}",
+        "is_downloaded": true,
+        "database_name": "KETOAN_2023&2024",
+        "queue_topic_name": "extract_data_big_2_g2",
+        "queue_sequence": "172.16.195.186_5432",
+        "end_date_license": "2025-04-19T15:45:42.113113+07:00",
+        "specific_download": false
+    }'

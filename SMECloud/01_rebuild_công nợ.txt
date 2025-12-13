@@ -1,0 +1,11 @@
+curl --location 'https://actapp.misa.vn/g3/api/sync/in/crm/rebuild_corp_redundant_data' \
+--header 'Content-Type: application/json' \
+--header 'Postman-Token: 75d108cd-5094-4c1c-9cd1-969430ca4036' \
+--header 'cache-control: no-cache' \
+--data '	{
+		"tenant_ids" : [
+			"d4df61d8-1e4f-46d6-9c7a-be821ba91f72"
+		],
+		"rebuild_type": 1, 
+		"is_drop_temp": false
+	}'
