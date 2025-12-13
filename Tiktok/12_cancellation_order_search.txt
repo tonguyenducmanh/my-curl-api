@@ -1,0 +1,16 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/TikToks/cancellation/search?sign=bc721f0e0182914e3487b81df204de37a352fc3aa96947efda6dc1e5dd0d5290&timestamp=1623812664&app_key=29a39d' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692de59186369876306d4a66e10b6bd47d74903307856651224b11a62a4c149edae4975b4a736d33d6c6cacdd11f204b1ba6' \
+--data '{
+	"PageSize": "50",
+	"ShopCipher": "ROW_e2fGOwAAAADzN9eZPRO4mgtR4LJ9cy5x",
+	"PageToken": "",
+	"AccessToken": "ROW_Hw5zhgAAAAAIR4LuJAi8l1YXNjDDgpfbCjn_yCGPMdw4FXgm7LgxHVL8g4yAoqyzFFIxG4SsDsrhFb2CpdYTe45X4fYC6sEbF__ZhxEwObFqkkQhDFattNoBIqvOC8Gt-Zq2zv-zyvS3JLbe0aJJDyD0se1wo-2WND1W7wbAW37gSrwlYN5MBxKa8shPKD469idGya24tI0",
+	"Body": {
+		"order_ids":[
+			579093266628446193
+		]
+	}
+}'

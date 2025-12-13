@@ -1,0 +1,24 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/TikToks/products/inventory/quantity' \
+--header 'Content-Type: application/json' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--data '{
+  "AccessToken": "ROW_w33AogAAAAAIR4LuJAi8l1YXNjDDgpfbnSPRGHIa_Qk-0GWH1fRtqTaonGJFJOyrttxuFqQ2DjBJQuUXL6Dqe23UocXhQfdFhDDYlEqLHrBs7rPypYhtGz_CS83nD3_Ldhlnh6dcl0s4cmr1qETfXG3R1J3U9Ix2XjRlDkuNhQNMaaDWbzVEtBVM7QxHPCS90I62AYHrJok",
+  "RefreshToken": "ROW_V7C6twAAAADagehV9kt_11uAoAia8k0VARzBZ3vVtSbQvJJ7iJDOaYIde4JEkzkVpXgz_jljdL4",
+  "Body": {
+    "Skus": [
+      {
+        "Id": "1731101643941775502",
+        "Inventory": [
+          {
+            "Quantity": 30,
+            "WarehouseId": "7428504950145992453"
+          }
+        ]
+      }
+    ]
+  },
+  "ShopCipher": "ROW_jwtk3QAAAAAYv0oGRo_RUUQPcU3xnjzO",
+  "IsPublishAPI": false,
+  "ProductID": "1731101614278543502"
+}'

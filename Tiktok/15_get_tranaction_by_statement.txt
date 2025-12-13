@@ -1,0 +1,15 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Tiktoks/finance/statements/statement-transactions' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692d0c26ad33099ba97fcea3a648ef820fb3b769913fc5930532d134f89ebce8141044ccacdf91da6e8999ee242effad3eb3' \
+--data '{
+    "accessToken": "ROW__Td0BwAAAAAIR4LuJAi8l1YXNjDDgpfbBJOExOIilAwgBIWJicls3uLnEmhg6vdDmyl234vXn81lBbVUZTXcqgahlLd3YoT_VPoZHkwCQInc62LzxThdk9oNxvLgniqXFmZBBS_bl-UY9HvkqwHlgEjbvzNOywVHDvRAYqdPHhtKbv4n-FALGWjDzAsYm325PG1RIqbe-gs",
+    "statement_id": 7582421412984473352,
+    "sort_field": "order_create_time",
+    "sort_order": "ASC",
+    "page_size": 20,
+    "shopCipher": "ROW_dx2QlgAAAAAHOreAO38IhGpdNqnzZtnz",
+    "isPublishAPI": false,
+    "page_token": null
+}'
