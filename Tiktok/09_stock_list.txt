@@ -1,0 +1,8 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/TikToks/stocks/get-full-stock' \
+--header 'Content-Type: application/json' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--data '{
+	"AccessToken":"ROW_5mKl1AAAAAAIR4LuJAi8l1YXNjDDgpfbV634CsyGgtN50S-MPKASiKg-bRPneWstMjvn2HzMbAr3WUT3YkOgsTC9bKeBcDsDiyTRwdFqDOQ1yOlRxG1dDHTOJ4l0YWlaCqCwNO1bJQVxFEYIN_-BGXWUyh2mzs48FBc1FA7XPnuZ1aTj53DpbtHal_dy2RISSeUI3-_JEns",
+	"ShopCipher":"ROW_Ww_XVAAAAABVJxBIBvtTagIxQ7q4-4XR"
+}'
