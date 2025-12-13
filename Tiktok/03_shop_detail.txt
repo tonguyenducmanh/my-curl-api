@@ -1,0 +1,7 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/TikToks/shops' \
+--header 'Content-Type: application/json' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--data '{
+    "AccessToken": "ROW_25IFWQAAAAAIR4LuJAi8l1YXNjDDgpfbmLhXzNbNLmMEj4aT6nqmHUmnzrfgYc8OWTc3EGl8VzW9-YlIaeoBGpvbqzSO60YhvzxysrTGlCsNjYMC81DFGavdsKxxx3HSxOcKv2OeMeoZ0PqcBceixmcfboEObduzqg4QH_G0-LUb1UU_AfIhV_j5pxM4x3JizMI37dPzWNM"
+}'

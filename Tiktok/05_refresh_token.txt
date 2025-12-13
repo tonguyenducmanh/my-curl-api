@@ -1,0 +1,3 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/TikToks/tokens/refresh?refreshToken=ROW_LccMUwAAAADagehV9kt_11uAoAia8k0V4dk2l44ghp9dp4GvGTFIl1n7YstyTWomEFomlidFDSE' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5'

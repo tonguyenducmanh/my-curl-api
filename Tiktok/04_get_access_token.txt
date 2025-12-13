@@ -1,0 +1,3 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/TikToks/tokens/connect?authCode=ROW_1RoxYgAAAABaZto4zKPjhIQQxDwTgGApCWbzQ8OB1k9zqIiSc8QVzcgFHPTqQqUnSqTjF8kG6cRxcrJm2UzJCRwl3yJqQ1_bJ7PmY1h8X3z6noyaoEgpxU0xFX-XMPX7PiMEr-BV_21yLVdc1WsJHRY3FCsJwTJH_CxTYbc3rFy_1Z2QBUgSsg' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5'
