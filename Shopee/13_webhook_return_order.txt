@@ -1,0 +1,26 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/push/webhook' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692d7e53935ff5b9ff419e386f6f91faf67e7314c66a21d139a25073b8a408cec8f0b4119f16cc014d3d1c9c30aa5fda2bea' \
+--data '{
+   "data": {
+       "order_sn": "241128EDQ9YKJ0",
+       "return_sn": "2411280EDT4JRV5",
+       "updated_values": [
+           {
+               "update_field": "return_status",
+               "old_value": "JUDGING",
+               "new_value": "PROCESSING",
+               "update_time": 1732796767
+           },
+           {
+               "update_field": "logistics_status",
+               "old_value": "LOGISTICS_NOT_STARTED",
+               "new_value": "LOGISTICS_PENDING_ARRANGE",
+               "update_time": 1732796767
+           }
+       ]
+   },
+   "shop_id": 220004993,
+   "code": 29,
+   "timestamp": 1732796767
+}'

@@ -1,0 +1,18 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/orders/buyer-invoice-info' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692daead2499566dc136806570e5375ced501c98665255f2df5502cac7dfaea3d28987b426d528ddc4a824cf24b7b6c65bc0' \
+--data '{
+    "accessToken": "7852745171496a6f4d76494f5662786c",
+    "refreshToken": "7951524c635452637052727a75724e6d",
+    "objRequest": {
+        "shop_id": 182842009,
+        "queries": [
+            {
+                "order_sn": "241203TMDVJXS3"
+            }
+        ]
+    },
+    "ShopId": 182842009
+}'

@@ -1,0 +1,27 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/products/stock' \
+--header 'Content-Type: application/json' \
+--header 'Postman-Token: 89b7b1a4-be44-4f7a-a4e7-756a3199c70c' \
+--header 'cache-control: no-cache' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'Cookie: TS016f3c7c=019ba1692d7e53935ff5b9ff419e386f6f91faf67e7314c66a21d139a25073b8a408cec8f0b4119f16cc014d3d1c9c30aa5fda2bea' \
+--data '{
+    "accessToken": "eyJhbGciOiJIUzI1NiJ9.CJ_UehABGNO66SIgASiJsOPJBjDCgfGSDjgBQAE.ZL2m4xjv2vFxw1OW4RigGsBCLiJVgWn0J9D3jWVVKv4",
+    "refreshToken": "eyJhbGciOiJIUzI1NiJ9.CJ_UehABGNO66SIgAiiJsOPJBjCfyeuJDjgBQAE.lu_ls0Zgk5kWhQ-0uCE83XByciAaHWEgjrSHacv6r04",
+    "isPublishAPI": false,
+    "ShopId": 73030995,
+    "objRequest": {
+		"item_id": 22880810142,
+        "stock_list":[
+            {
+                "model_id":148371912880,
+                "seller_stock":[
+                    {
+                        "location_id": null, 
+                        "stock": 1
+                    }
+                ]
+            }
+        ]
+	}
+}'

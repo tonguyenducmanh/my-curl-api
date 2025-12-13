@@ -1,0 +1,12 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/orders/accounting' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692d7e53935ff5b9ff419e386f6f91faf67e7314c66a21d139a25073b8a408cec8f0b4119f16cc014d3d1c9c30aa5fda2bea' \
+--data '{
+	"accessToken": "43656a54444d6a59564b7445556e4a6a",
+	"refreshToken": "4b6176414d6c70624e4466477873424f",
+	"isPublishAPI": false,
+	"ShopId": 828569278,
+	"order_sn":"241202QJMG1MGC"
+}'

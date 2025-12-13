@@ -1,0 +1,16 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/orders/accounting-batch' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692d7e53935ff5b9ff419e386f6f91faf67e7314c66a21d139a25073b8a408cec8f0b4119f16cc014d3d1c9c30aa5fda2bea' \
+--data '{
+"accessToken": "eyJhbGciOiJIUzI1NiJ9.CJ_UehABGL-f3DQgASjj06PCBjDZ7oTfDjgBQAE.jkjNPSIMGVxDeQPpYx5V1wP8pSpAncSvtKzSHyIbiQo",
+	"refreshToken": "eyJhbGciOiJIUzI1NiJ9.CJ_UehABGL-f3DQgAijj06PCBjCymbzFCzgBQAE.VMLe3a4dTUtHxBuO0rD9ct59C1CqFxNE-XG85wBay04",
+	"isPublishAPI": false,
+	"ShopId": 110563263,
+	"objRequest": {
+		"order_sn_list": [
+			"250601CV1N088J"
+		]
+	}
+}'

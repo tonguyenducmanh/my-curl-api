@@ -1,0 +1,15 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/push/webhook' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692d7e53935ff5b9ff419e386f6f91faf67e7314c66a21d139a25073b8a408cec8f0b4119f16cc014d3d1c9c30aa5fda2bea' \
+--data '{
+    "data": {
+        "completed_scenario": "",
+        "items": [],
+        "ordersn": "241018TK0PSW5X",
+        "status": "PROCESSED",
+        "update_time": 1729071632
+    },
+    "shop_id": 996917945,
+    "code": 3,
+    "timestamp": 1729071632
+}'

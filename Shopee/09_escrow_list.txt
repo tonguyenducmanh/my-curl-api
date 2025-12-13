@@ -1,0 +1,14 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/payment/escrow-list' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: TS016f3c7c=019ba1692daead2499566dc136806570e5375ced501c98665255f2df5502cac7dfaea3d28987b426d528ddc4a824cf24b7b6c65bc0' \
+--data '{
+	"accessToken": "486c6753635374716572727573587273",
+	"refreshToken": "5659736677574b6e7366657a68697445",
+    "shopId": 996917945,
+"release_time_from": 1675184400,
+    "release_time_to": 1753981200,
+    "page_size": 100,
+    "page_no": 1
+}'
