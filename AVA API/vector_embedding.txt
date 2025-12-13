@@ -1,0 +1,13 @@
+curl --location 'https://aiservice.misa.vn/embedding-proxy/infly/embed' \
+--header 'Content-Type: application/json' \
+--header 'api-key: AI_team' \
+--header 'cache-control: no-cache,no-cache' \
+--header 'model: inf-retriever' \
+--data '{
+    "embedding_size": 384,
+    "embedding_start": null,
+    "normalize": true,
+    "inputs": [
+        "Thu tiền gửi__Thu hoàn ứng nhân viên__Thu hoàn ứng của nhân viên Lê Huy Hoa"
+    ]
+}'
