@@ -1,0 +1,10 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/TikToks/get-redirect-url' \
+--header 'Content-Type: application/json' \
+--header 'User-Agent: insomnia/10.1.1' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--data '{
+	"clientId": "4247d505-8604-4d5a-ad50-39a71f5287ca",
+	"code": "ROW_RA6hogAAAABaZto4zKPjhIQQxDwTgGApCWbzQ8OB1k9zqIiSc8QVzR2H8scb8jdlUydr4b1rA2UcRmhYy128hKKMjEh4L6vE8RRbI2l0Fgm1XR3acVnut-GV7qovuDvs1r8P-NuPv1bAA-IlgZFzLcIyXEVBvUV1tiSuqqyk6wCArWanURmSXMwwujE-Rddiz5DR5PezA1apPzkmp4LcolZfawySuJGe4NmYWQhXbGk3bFaRbnF2kSKfCX8pWOyh9QbLIs-W8phj3h-X9BHg4_rZTmkRrKC1CPS5v192fy5N3ljt60Po_w6Kav18J1Lj61KCykTLhKIpgqk2LWCackH3C8Kn-usru95kczRYYD1Qbez-29lXH6IQ79Y7vq-osIeHOhVLwAWGVd0lVzOmGmwY9YtEKVoiMmxHg5ZLENb94b-RSH0Zpg&locale=vi-VN",
+	"state": "3b7e4241-01fc-4a33-96e6-d98cf8ab9932"
+}'
