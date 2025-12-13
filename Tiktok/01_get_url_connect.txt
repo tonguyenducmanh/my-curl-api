@@ -1,0 +1,9 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/TikToks/get-url-connect' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--data '{
+"isFakeUrl": false,
+"isDisconnect": false,
+"ClientId": "4247d505-8604-4d5a-ad50-39a71f5287ca"
+}'
