@@ -1,0 +1,8 @@
+curl --location 'https://ecommerce.misa.vn/backend-api/Shopees/get-connect-token' \
+--header 'x-misa-app-code: AMISAccounting' \
+--header 'x-misa-api-key: misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type: application/json' \
+--data '{
+    "shopId": 119067,
+    "code": "494f526f6a724b6e6841644e6c675a7a"
+}'
