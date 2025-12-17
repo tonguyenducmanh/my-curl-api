@@ -4,15 +4,15 @@ curl --location 'https://ecommerce.misa.vn/backend-api/Tiktoks/finance/statement
 --header 'Content-Type: application/json' \
 --header 'Cookie: TS016f3c7c=019ba1692d0c26ad33099ba97fcea3a648ef820fb3b769913fc5930532d134f89ebce8141044ccacdf91da6e8999ee242effad3eb3' \
 --data '{
-    "statement_time_ge":  1764522000,
-    "statement_time_lt": 1767114000,
+    "statement_time_ge":  1761930000,
+    "statement_time_lt": 1762361999,
     
-    "payment_status": "PROCESSING",
+    "payment_status": null,
     "page_size": 50,
     "page_token": null,
     "sort_field": "statement_time",
     "sort_order": "ASC",
-    "accessToken":     "ROW_u2tPfgAAAAAIR4LuJAi8l1YXNjDDgpfbP2RfUa2eGuWc8LNLCzhnx45tNCKiypv7Jf9GTIGa5IJnrm9CTxYcw8oeUvKzFEBzgqD8zmwvgSyC-9TVlTN7E9yWS8QT1LRO_FnmZo7r_Hlaxcay6IFpK8MUVEPHGpelJPle0vh6whrukE4iwX2bF8X0XAnsZN9XSIC4qviXE7o",
-    "shopCipher": "ROW_vHZi3QAAAADfHjq3hO5f2W0asAreUuir",
+    "accessToken":     "ROW_2TH2pAAAAAAIR4LuJAi8l1YXNjDDgpfbWZoBdTv_U5q8JUyVgDUvvRFx1dlL2DVEBDdvqpLNTrJc1UM7E55hk3sbagDwzFq8Emr7hF0HvbQv8oZF4fJxDXKIuDDoSFdWFa9G886-l-BFPX1QqfC2S8GVq4iCqA53G81PTkl4R3PKGswUCeoI85qSxNDF0uJ-1cVh1k6IOq0",
+    "shopCipher": "ROW_lHrf3gAAAAD9KCziHFCLeAWylwHnD8bk",
     "IsPublishAPI": false
 }'

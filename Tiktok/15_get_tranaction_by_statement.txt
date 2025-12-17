@@ -4,12 +4,12 @@ curl --location 'https://ecommerce.misa.vn/backend-api/Tiktoks/finance/statement
 --header 'Content-Type: application/json' \
 --header 'Cookie: TS016f3c7c=019ba1692d0c26ad33099ba97fcea3a648ef820fb3b769913fc5930532d134f89ebce8141044ccacdf91da6e8999ee242effad3eb3' \
 --data '{
-    "accessToken": "ROW__Td0BwAAAAAIR4LuJAi8l1YXNjDDgpfbBJOExOIilAwgBIWJicls3uLnEmhg6vdDmyl234vXn81lBbVUZTXcqgahlLd3YoT_VPoZHkwCQInc62LzxThdk9oNxvLgniqXFmZBBS_bl-UY9HvkqwHlgEjbvzNOywVHDvRAYqdPHhtKbv4n-FALGWjDzAsYm325PG1RIqbe-gs",
-    "statement_id": 7582421412984473352,
+    "accessToken":     "ROW_2TH2pAAAAAAIR4LuJAi8l1YXNjDDgpfbWZoBdTv_U5q8JUyVgDUvvRFx1dlL2DVEBDdvqpLNTrJc1UM7E55hk3sbagDwzFq8Emr7hF0HvbQv8oZF4fJxDXKIuDDoSFdWFa9G886-l-BFPX1QqfC2S8GVq4iCqA53G81PTkl4R3PKGswUCeoI85qSxNDF0uJ-1cVh1k6IOq0",
+    "shopCipher": "ROW_lHrf3gAAAAD9KCziHFCLeAWylwHnD8bk",
+    "statement_id": 7567980275230082833,
     "sort_field": "order_create_time",
     "sort_order": "ASC",
     "page_size": 20,
-    "shopCipher": "ROW_dx2QlgAAAAAHOreAO38IhGpdNqnzZtnz",
     "isPublishAPI": false,
     "page_token": null
 }'
