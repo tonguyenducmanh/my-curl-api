@@ -1,0 +1,25 @@
+curl 'https://actapp.misa.vn/g1/api/sync/test/test' \
+--request POST \
+--header 'Content-Type:application/json' \
+--header 'Postman-Token:a8828f92-7271-4c84-9d07-edeee6f1f96b' \
+--header 'cache-control:no-cache' \
+--data '{
+  "queue_id": "283244cb-404b-43d9-905c-c77f2b6b6dfa",
+  "type": "stock",
+  "data": "{\"data\":\"[\\\"All\\\"]\"}",
+  "created": "2023-06-14T07:14:47.552Z",
+  "sequence": null,
+  "database_id": "2defc22c-912e-46f9-97ca-15dd1d5f457b",
+  "state": 3,
+  "faild_count": 0,
+  "error": "",
+  "start_time": "2023-06-14T07:14:47.561Z",
+  "end_time": "2023-06-14T07:14:47.608Z",
+  "tracking_time": "2023-06-14T07:14:47.561Z",
+  "client_id": "actappg2-syncworker-75f48785d9-dbzbb-1",
+  "tx": null,
+  "tenant_id": null,
+  "env": "g2",
+  "queue_name": "SMECLOUD_CRM_SYNC_G2_2",
+  "action_type": 0
+}'
