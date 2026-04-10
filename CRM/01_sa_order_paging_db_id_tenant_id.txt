@@ -1,0 +1,15 @@
+curl -X POST \
+  http://amisapp.misa.vn.local/crm/gc/api/open/v1/api/sme/paging/45e18625-9706-472f-b37b-61c08c76b685/0837c0ff-57c0-4dbe-b20e-4d8a1132215b \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55Y29kZSI6Ijg0dVZnSXE3b3ZpOUNhdTF6eU5QRHc9PSIsImNsaWVudGlkIjoiN1lvZWEzcXY3TGc4QXRoZ0dnL2RhZz09IiwiZXhwaXJlcyI6IkVJZXVxV0pRcmxpSG15b1VSZHczdmdDcVo2MkRUWHpjcmQycC9tcWRwVEU9IiwiZXhwIjoxNzc1Nzk0MzgxLCJpc3MiOiJNSVNBIiwiYXVkIjoiQU1JU0NSTTIifQ.3-53g0A4svirxFDJdKQksJ8N--R0N9MR2YiwKchWt_g' \
+-H 'Content-Type: application/json' \
+-H 'Postman-Token: db1a3b89-2e51-45ba-9c55-1c2591a6c251' \
+-H 'cache-control: no-cache' \
+-H 'companycode: 2GIGS5SH' \
+-d '{
+    "LayoutCode": "SaleOrder",
+    "Start": 0,
+    "PageSize": 20,
+    "Columns": null,
+    "BranchID": "1a233292-75a0-41b2-bbcd-d8cdc531c869",
+    "Formula": null
+}'
