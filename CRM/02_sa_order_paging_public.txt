@@ -1,0 +1,22 @@
+curl 'https://amisapp.misa.vn/crm/api/open/v1/api/sme/paging/45e18625-9706-472f-b37b-61c08c76b685/0837c0ff-57c0-4dbe-b20e-4d8a1132215b' \
+--request POST \
+--header 'Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55Y29kZSI6Ijg0dVZnSXE3b3ZpOUNhdTF6eU5QRHc9PSIsImNsaWVudGlkIjoiN1lvZWEzcXY3TGc4QXRoZ0dnL2RhZz09IiwiZXhwaXJlcyI6IlE3VTRlMkdDSFUxVE9GZkk1QkJHQ0s5ZTRxdUJ0Q3ZlQ29UNXUrekZQcVE9IiwiZXhwIjoxNzc2MTQ1Nzg4LCJpc3MiOiJNSVNBIiwiYXVkIjoiQU1JU0NSTTIifQ.Cu1xfG-qXRImiMnt3HA9jJ7z07DJWt6-ezDFbhThojY' \
+--header 'Content-Type:application/json' \
+--header 'companycode:2GIGS5SH' \
+--data '{
+  "LayoutCode": "SaleOrder",
+  "Start": 0,
+  "PageSize": 20,
+  "Columns": null,
+  "BranchID": "1a233292-75a0-41b2-bbcd-d8cdc531c869",
+  "Filters": [
+    {
+      "Operator": 0,
+      "Value": "DH153833890361315",
+      "Key": "SaleOrderNo",
+      "Property": "SaleOrderNo",
+      "InputType": 1,
+      "Addition": 1
+    }
+  ]
+}'
