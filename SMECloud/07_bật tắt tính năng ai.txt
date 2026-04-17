@@ -1,0 +1,16 @@
+curl 'https://actapp.misa.vn/g3/api/ai/v1/internal/toggle_ai_config' \
+--request POST \
+--header 'Content-Type:application/json' \
+--header 'Postman-Token:a48b0a27-f0de-400f-aec0-f60a2eb764a7' \
+--header 'cache-control:no-cache' \
+--header 'x-clientid:83b82a4f17f9a2e6b5b3eba3f4efe0e1' \
+--header 'Cookie:TS0109163a=010b973ddc9a5363053fa591f73148bd0314301f444f2f1baf57fe0317de5def1f30998885c90c28075806f507fdcf7e86bfc3624c; x-deviceid=8efb2a25-2d9f-4c87-aee2-f40be439d376' \
+--data '{
+  "tenant_codes": [
+    "9t18s3wq"
+  ],
+  "ai_features": [
+    "agent_work"
+  ],
+  "enable": true
+}'

@@ -1,0 +1,2 @@
+curl 'https://actapp.misa.vn/g3/api/ai/health2' \
+--header 'Content-Type: application/json'
