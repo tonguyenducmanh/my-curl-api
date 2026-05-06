@@ -1,0 +1,17 @@
+curl 'https://ecommerce.misa.vn/backend-api/Shopees/shops/get-bound-whs-info' \
+--request POST \
+--header 'Content-Type:application/json' \
+--header 'Postman-Token:89b7b1a4-be44-4f7a-a4e7-756a3199c70c' \
+--header 'cache-control:no-cache' \
+--header 'x-misa-api-key:misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'x-misa-app-code:AMISAccounting' \
+--header 'Cookie:TS016f3c7c=019ba1692d7e53935ff5b9ff419e386f6f91faf67e7314c66a21d139a25073b8a408cec8f0b4119f16cc014d3d1c9c30aa5fda2bea' \
+--data '{
+  "accessToken": "eyJhbGciOiJIUzI1NiJ9.CJ_UehABGN-66e0EIAEonvPpzwYw_Y6T5Q44AUABSAM.g3bDe3uHdp0phAixUz4PgQyEIuyWIWHJ9_lKDlWVbtc",
+  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.CJ_UehABGN-66e0EIAIonvPpzwYwpdj7vQE4AUABSAM.BPn2NdYOV81W9yiYVHH-89NF3JAlkM5qMCh3Kxx7MA8",
+  "isPublishAPI": false,
+  "ShopId": 1304059231,
+  "objRequest": {
+    "ShopId": 1304059231
+  }
+}'
