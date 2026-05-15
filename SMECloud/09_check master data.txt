@@ -1,0 +1,12 @@
+curl 'https://actapp.misa.vn/api/ais/migration/check_tenant_use_md' \
+--request POST \
+--header 'Content-Type:application/json' \
+--header 'Cookie:x-deviceid=7411ae99-bd47-4a3b-a1e0-5198a0de71e2' \
+--data '{
+  "ApiKey": "MCV2025_4F8A9B2E7D5C6890E1F3A7B4C2D9E6F8",
+  "IsDeleteCache": true,
+  "DataType": "stock;inventory_item_group;inventory_item",
+  "TenantIds": [
+    "ae0f9614-5cf2-47d4-9505-380cef6d2ebe"
+  ]
+}'
