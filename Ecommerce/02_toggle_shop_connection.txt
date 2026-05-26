@@ -1,0 +1,14 @@
+curl 'https://actapp.misa.vn/g3/api/ecommerce/v1/internal/toggle_shop_connection' \
+--request POST \
+--header 'Content-Type: application/json' \
+--header 'x-clientid: 58cee4b6-a145-42ea-929b-d26ecbfe0766' \
+--data '{
+    "shop_id":"7494614750213606282",
+    "tenant_id": "e9766547-4c81-4465-a84c-c5c0db2ca499",
+    "database_id": "c9a6b4a7-6ad9-4d57-9181-b40079c2ed79",
+    "organization_unit_id" :"8ca56131-ca8c-48d5-a43e-767ca9657909",
+    "source_database_id": "8f68856e-c3a6-49e0-b8cc-4e5e5a924af4",
+    "is_add_new": true,
+    "shop_type": 1,
+    "expire_in_seconds": 30
+}'
