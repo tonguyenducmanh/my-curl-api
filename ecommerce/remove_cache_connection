@@ -1,0 +1,8 @@
+curl 'https://actapp.misa.vn/g3/api/ecommerce/v1/internal/remove_cache_connection' \
+--request POST \
+--header 'Content-Type:application/json' \
+--header 'x-clientid:58cee4b6-a145-42ea-929b-d26ecbfe0766' \
+--data '{
+  "shop_id": "996917945",
+  "shop_type": 0
+}'
