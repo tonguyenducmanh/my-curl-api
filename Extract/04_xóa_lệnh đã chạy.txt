@@ -1,0 +1,9 @@
+curl --location 'https://actapp.misa.vn/g2/api/extract/v1/extract/delete_task' \
+--request POST \
+--header 'Content-Type:application/json' \
+--header 'x-clientid:58cee4b6-a145-42ea-929b-d26ecbfe0766' \
+--data '{
+    "database_ids": [
+        "8f68856e-c3a6-49e0-b8cc-4e5e5a924af4"
+    ]
+}'
