@@ -30,6 +30,11 @@ curl --location 'https://actapp.misa.vn/g2/api/extract/v1/extract/create_extract
   "session_data": "{\"AccountingSystem\":0,\"BranchId\":\"42628f4d-67a0-4a1b-9762-0ac7d8c9e1b2\",\"TenantId\":\"01a65d42-ce96-4fc6-af67-6cced567b26b\",\"WorkingBook\":0,\"DatabaseId\":\"4a432103-a6ee-438e-bb07-3c2921d945a0\",\"IncludeDependentBranch\":false,\"Language\":\"vi\",\"UserId\":\"fd504641-920b-47d0-bbce-6e43bbcbee9a\",\"SubCorpID\":null,\"IsDBSyncCorp\":false,\"LicenseType\":1,\"User\":{\"UserId\":\"fd504641-920b-47d0-bbce-6e43bbcbee9a\",\"Email\":\"ducmanh14032000@gmail.com\",\"unique_name\":\"\",\"FullNames\":\"MISASUPPORT\",\"FullName\":\"MISASUPPORT\"}}",
   "error": null,
   "tenant_id": "01a65d42-ce96-4fc6-af67-6cced567b26b",
-  "is_downloaded": true
-}
-'
+  "is_downloaded": true,
+  "specific_extract": false,
+  "specific_dynamic_report":[
+    "VATTaxPurchase","VATTaxSale", "SalesBookDetailDefault", "PUDetailPurchaseByInventoryItemDynamic"
+  ],
+  "specific_voucher":[],
+  "specific_static_report":[]
+}'
