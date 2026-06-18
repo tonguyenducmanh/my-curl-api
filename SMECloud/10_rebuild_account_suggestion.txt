@@ -11,6 +11,5 @@ curl 'https://actapp.misa.vn/g1/api/ai/v1/internal/rebuild_rule' \
       "database_ids": []
     }
   ],
-  "is_sync_flow": true,
-  "rebuild_type": 2
+  "is_sync_flow": true
 }'
