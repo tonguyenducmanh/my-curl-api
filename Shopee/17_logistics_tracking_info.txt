@@ -1,0 +1,14 @@
+curl 'https://ecommerce.misa.vn/backend-api/Shopees/logistics/tracking-info' \
+--request POST \
+--header 'x-misa-app-code:AMISAccounting' \
+--header 'x-misa-api-key:misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type:application/json' \
+--header 'Cookie:TS016f3c7c=019ba1692daead2499566dc136806570e5375ced501c98665255f2df5502cac7dfaea3d28987b426d528ddc4a824cf24b7b6c65bc0' \
+--data '{
+  "accessToken": "eyJhbGciOiJIUzI1NiJ9.CJ_UehABGODKuSkgASjG4e_TBjCWpNiaBDgBQAFIAw.UWX5N2XTzOMG7StGS4L4p4DYONVgYFF7HECqZd_ACTU",
+  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.CJ_UehABGODKuSkgAijG4e_TBjDWxbKqAzgBQAFIAw.yFCnk5d1Sqpi9FUa1z_JWmAETN-C2k3wgFXEy934vpg",
+  "isPublishAPI": false,
+  "ShopId": 86926688,
+  "order_sn": "260729W0RQCQ3X",
+  "package_number": "OFG238997264240718"
+}'
