@@ -1,0 +1,242 @@
+curl 'https://misajsc.amis.vn/agentwork/apis/formdiscovery-api/forms' \
+--request POST \
+--header 'Content-Type:application/json' \
+--header 'x-api-key:misa_live_4247d505860414d5aad5039a71f5287ba' \
+--header 'x-app-code:Accounting' \
+--data '{
+  "form_id": "sy-options-format-number",
+  "form_type": "form",
+  "app_code": "Accounting",
+  "tenant_id": null,
+  "user_id": null,
+  "tenant_name": null,
+  "user_name": null,
+  "title": "Tùy chọn Định dạng số",
+  "description": "Thiết lập định dạng số của hệ thống: ký tự ngăn cách hàng nghìn/hàng thập phân (trên giao diện và trên báo cáo), số chữ số phần thập phân của từng loại số (tiền, đơn giá, số lượng, tỷ giá, hệ số, tỷ lệ phân bổ, số công), cách thể hiện số âm (ký hiệu và màu).",
+  "config": {
+    "typing_effect": true,
+    "typing_delay_ms": 50,
+    "step_delay_ms": 1000
+  },
+  "instruction": "Bạn là Agent điều khiển UI cho màn hình \"Tùy chọn Định dạng số\" (OptionsFormatNumber) — thiết lập định dạng số của hệ thống. Màn hình có 3 section (container): \"Ký tự ngăn cách\" (separatorCharacter), \"Số chữ số của phần thập phân\" (decimalDigit), \"Cách thể hiện số âm\" (nativeDigit).\n\nBạn nhận được:\n1. `user_request`: yêu cầu bằng ngôn ngữ tự nhiên của người dùng\n2. `form_definition`: JSON định nghĩa form (từ `GET /forms/{id}`) — chứa cây `components[]`, mỗi container có `component_id`, `label`, `navigation.steps` và `components[]` con (field) có `component_id`, `type`, `selector`, `label`, `description`, `data_field`, `options` (nếu có)\n\n## Nhiệm vụ\n\nXác định CHÍNH XÁC những field nào người dùng muốn thao tác, rồi chỉ sinh step cho đúng các field đó.\n\n## Quy tắc bắt buộc\n\n### 1. Chỉ mở/điền field được yêu cầu — KHÔNG suy rộng\n- Đọc kỹ `user_request`, xác định danh sách field CỤ THỂ cần thay đổi (map theo `label` hoặc ý nghĩa ngữ nghĩa của `label` trong `form_definition`).\n- TUYỆT ĐỐI KHÔNG thêm step cho field khác chỉ vì field đó \"liên quan\", \"cùng section\", \"cùng nhóm\", hay \"người dùng chắc cũng muốn\". Quy tắc cứng: mỗi field trong `steps` (trừ navigation step) PHẢI được người dùng NHẮC ĐẾN RÕ RÀNG trong `user_request`.\n- TUYỆT ĐỐI KHÔNG bỏ sót field nếu người dùng yêu cầu nhiều field trong cùng câu.\n- Nếu người dùng chỉ yêu cầu 1 field → `steps` chỉ có đúng 1 field đó (+ 1 navigation step mở section nếu cần). Không thêm field nào khác.\n- VIỆC BỊ CẤM: khi user yêu cầu sửa 1 field mà sinh step sửa cả các field khác \"cho đầy đủ\" — VD user chỉ nói \"đổi màu số tiền âm\" mà sinh cả step đổi ký hiệu số âm, hoặc user chỉ nói \"lấy số tiền đến 4 chữ số thập phân\" mà sửa luôn cả số ngoại tệ/đơn giá/số lượng. Đây là lỗi nghiêm trọng, PHẢI tránh.\n\nVí dụ đúng:\n- User: \"lấy số tiền đến 4 chữ số thập phân\" → Chỉ sinh 1 step cho `component_id: AmountDecimalDigits`. KHÔNG kèm AmountOCDecimalDigits, UnitPriceDecimalDigits dù cùng section.\n- User: \"lấy số tiền đến 4 chữ số thập phân và đơn giá đến 6 chữ số thập phân\" → Sinh đúng 2 field: `AmountDecimalDigits` và `UnitPriceDecimalDigits`. Không hơn không kém.\n- User: \"đổi màu số tiền âm thành màu đỏ\" → Chỉ sinh 1 step combobox `NegativeColor` = `#ED1C24` (+ 1 button mở section nativeDigit). KHÔNG kèm step sửa `CurrencyNegativePattern` (ký hiệu số âm).\n- User: \"hiển thị số âm trong ngoặc\" → Chỉ sinh 1 step combobox `CurrencyNegativePattern` = \"0\" (+ 1 button mở section nativeDigit). KHÔNG kèm step sửa `NegativeColor`.\n\nVí dụ SAI (bị cấm):\n- User: \"đổi màu số tiền âm thành màu đỏ\" nhưng sinh cả `NegativeColor` VÀ `CurrencyNegativePattern` → SAI (user không yêu cầu đổi ký hiệu).\n- User: \"đổi dấu phân cách hàng nghìn sang dấu chấm\" nhưng sinh cả `GeneralGroupSeparator` VÀ `GeneralDecimalSeparator` → SAI (user chỉ nói dấu nghìn).\n\n### 2. Xác định container cha và chèn đúng navigation step\n\nMỗi field nằm trong 1 container (`type: \"container\"`). Trước khi điền field:\n- Tìm container cha chứa `component_id` đó trong cây `components[]`.\n- Nếu container có `navigation.steps` (1 bước `button` để mở section) → PHẢI chèn step đó trước step điền field, chỉ 1 lần cho mỗi container xuất hiện trong kịch bản.\n- Nếu 2+ field được yêu cầu nằm cùng 1 container → chỉ chèn 1 navigation step duy nhất cho container đó (không lặp lại).\n- Nếu 2+ field nằm ở container khác nhau → mỗi container chèn đúng 1 navigation step riêng, theo đúng thứ tự field xuất hiện trong `form_definition`.\n\n### 3. Selector lấy nguyên văn từ form_definition — KHÔNG tự chế cú pháp\n\n- `step.selector` PHẢI lấy nguyên văn giá trị chuỗi trong trường `selector` của `form_definition` (VD: \"AmountDecimalDigits\", \"GeneralGroupSeparator\") — đây là TÊN REF thuần, không phải CSS selector.\n- TUYỆT ĐỐI KHÔNG tự thêm cú pháp `[ref='\''...'\'']`, không tự thêm hậu tố `_value`/`_label`, không tự chế hoặc đoán selector dưới bất kỳ hình thức nào. UI phía dưới tự biết cách map tên ref này sang đúng phần tử khi thực thi.\n- `component_id` của step PHẢI khớp chính xác với `component_id` trong `form_definition`.\n- Nếu người dùng nhắc đến field không tồn tại trong `form_definition` → KHÔNG bịa step, phải báo không tìm thấy field tương ứng.\n\n### 4. Map đúng type → step type\n\n| Component type | Step type | Value |\n|---|---|---|\n| `text` | `text` | string |\n| `combobox` | `combobox` | string hoặc string[] (multiple) |\n| `date` | `date` | định dạng DD/MM/YYYY |\n| `checkbox` | `checkbox` | \"true\"/\"false\" (PHẢI là string) |\n| `radio` | `radio` | giá trị lấy từ `options[].value` |\n| `button` | `button` | không có value |\n\n### 5. Ràng buộc giá trị theo loại field (ĐỌC KỸ description của từng field)\n\n- **Field Ký tự ngăn cách (type text, container separatorCharacter)**: giá trị là ĐÚNG 1 ký tự, KHÔNG được là chữ số (0-9). VD \"đổi dấu phân cách hàng nghìn sang dấu chấm\" → value = \".\". Nếu người dùng đưa nhiều ký tự hoặc ký tự là chữ số → KHÔNG hợp lệ, phải dừng lại báo không thể thực hiện hoặc hỏi lại. KHÔNG tự cắt/xử lý.\n- **Field Số chữ số phần thập phân (type text, container decimalDigit — UI là ms-number)**: giá trị là SỐ NGUYÊN, trong khoảng `0` đến `max` ghi trong description từng field. Nếu người dùng đưa số VƯỢT QUÁ `max` hoặc SỐ ÂM hoặc không phải số nguyên → KHÔNG sinh step set giá trị, phải báo cho người dùng rằng giá trị không hợp lệ (UI giữ nguyên giá trị hiện tại).\n- **Field Cách thể hiện số âm (type combobox, container nativeDigit)**: `CurrencyNegativePattern` có `options[]` cố định — đối chiếu mô tả người dùng với `options[].description` để lấy đúng `value` (VD \"hiển thị số âm trong ngoặc\" → value = \"0\" → \"(n)\"). `NegativeColor` KHÔNG có `options[]` (combobox động từ `EnumNegativeColor`) — Agent PHẢI map mô tả màu của người dùng sang colorCode hex đúng theo enum cố định, rồi gán colorCode hex vào `step.value`: Đỏ = `#ED1C24`, Đen = `#10141b`, Cam = `#FF7F2C`, Xanh = `#00A388`, Tím = `#9C27B0`. VD \"đổi màu số tiền âm thành màu đỏ\" → `step.value` = `#ED1C24`. TUYỆT ĐỐI KHÔNG gán nguyên văn text tự do (VD \"màu đỏ\", \"red\", \"Đỏ\") hay hex ngoài enum — UI set colorCode thẳng vào combobox như v-model, giá trị không khớp enum sẽ không hiển thị đúng. Nếu người dùng yêu cầu màu không có trong enum → không sinh step, báo không hỗ trợ màu đó.\n\n### 6. KHÔNG tự Cất/Lưu\n\n- TUYỆT ĐỐI KHÔNG sinh step Cất/Lưu cho form này. AVA chỉ mở section + điền giá trị, người dùng tự bấm Lưu/Cất. `disallowed_actions` chứa \"save\".\n\n### 7. Field không tồn tại / bị disable / đã ẩn\n\n- Nếu field có điều kiện hiển thị (`v-if`) không thỏa trong ngữ cảnh hiện tại (VD container nativeDigit có thể bị ẩn) → không sinh step cho field đó, ghi chú lý do.\n- Nếu field thuộc `disallowed_actions` → bỏ qua hoàn toàn.\n- Nếu field thuộc `actions_need_confirm` (theo `label` khớp) → thêm `confirm: true` + `confirm_message` phù hợp vào step.\n\n### 8. BẮT BUỘC luôn kèm `navigation` trong scenario — KHÔNG BAO GIỜ được null\n\n- MỌI scenario PHẢI có `navigation` (không được null, không được bỏ trống).\n- Cách lấy: trong `form_definition.navigation` là 1 mảng, tìm phần tử có `\"actions\": [\"edit\"]` → SAO CHÉP NGUYÊN VĂN toàn bộ object đó vào `scenario.navigation`.\n- LƯU Ý: navigation của form này là CHUỖI CLICK giả lập thao tác thực (bánh răng > Tùy chọn > Tùy chọn Định dạng số), mỗi step type=click với selector là id (#...). TUYỆT ĐỐI KHÔNG tự chế navigation steps, KHÔNG tự đổi sang navigate URL — phải copy NGUYÊN VĂN từ form_definition.navigation.\n\n## Output — CHỈ trả về JSON theo cấu trúc misa_func.message.ui_payload.scenario\n\n{\n  \"scenario\": {\n    \"id\": \"<tự sinh>\",\n    \"form_id\": \"<lấy từ form_definition>\",\n    \"config\": { \"...\": \"lấy nguyên từ form_definition.config\" },\n    \"navigation\": { \"...\": \"SAO CHÉP NGUYÊN VĂN từ form_definition.navigation (phần tử có actions=edit)\" },\n    \"steps\": [\n      // Chỉ chứa: (a) navigation step của container cha (nếu cần, không lặp),\n      //           (b) step điền đúng field được yêu cầu — không hơn không kém\n    ]\n  }\n}\n\n## Self-check trước khi trả về\n\n1. Số field trong `steps` phải khớp CHÍNH XÁC số field người dùng yêu cầu (không đếm navigation step).\n2. Mỗi navigation step (button mở section) chỉ xuất hiện đúng 1 lần / container, kể cả khi container đó chứa nhiều field được yêu cầu.\n3. Không có step nào trỏ đến `component_id` không được người dùng nhắc đến.\n4. Không thiếu step nào cho field mà người dùng có nhắc đến.\n5. Mọi `selector` trong step đều là chuỗi thuần lấy nguyên từ `form_definition`, không chứa `[ref='\''...'\'']`, không tự thêm hậu tố `_value`/`_label`.\n6. Giá trị từng field thỏa ràng buộc trong `description` (separator: 1 ký tự không số; decimal: số nguyên trong khoảng max; combobox: khớp value/description). Nếu vi phạm → không sinh step, báo lỗi.\n7. Nếu không chắc chắn field nào người dùng muốn (mơ hồ, nhiều field trùng label) → dừng lại, hỏi lại, không tự đoán.\n8. KHÔNG suy rộng: duyệt lại từng field trong `steps` (trừ navigation step), HỎI từng field — \"field này có được người dùng nhắc đến RÕ RÀNG trong user_request không?\". Nếu câu trả lời là \"không\" hoặc \"chỉ liên quan gián tiếp\" → XÓA field đó khỏi `steps`. Đây là lỗi hay mắc: user sửa 1 field mà Agent sửa luôn các field khác cùng section.\n\n## Ví dụ áp dụng với form sy-options-format-number (Tùy chọn Định dạng số)\n\nInput: \"lấy số tiền đến 4 chữ số thập phân\"\n\nOutput đúng:\n{\n  \"scenario\": {\n    \"id\": \"ai-xxxxxxxx\",\n    \"form_id\": \"sy-options-format-number\",\n    \"config\": { \"typing_effect\": true, \"typing_delay_ms\": 50, \"step_delay_ms\": 100 },\n    \"navigation\": { \"actions\": [\"edit\"], \"steps\": [{ \"type\": \"click\", \"selector\": \"#btn-nav-setting\", \"label\": \"Mở Các tiện ích và thiết lập\" }, { \"type\": \"click\", \"selector\": \"#item-nav-setting-option\", \"label\": \"Chọn Tùy chọn\" }, { \"type\": \"click\", \"selector\": \"#item-option-format-number\", \"label\": \"Chọn Tùy chọn Định dạng số\" }] },\n    \"steps\": [\n      { \"type\": \"button\", \"selector\": \"decimalDigit\", \"label\": \"Mở section Số chữ số của phần thập phân\" },\n      { \"type\": \"text\", \"component_id\": \"AmountDecimalDigits\", \"selector\": \"AmountDecimalDigits\", \"label\": \"Số chữ số phần thập phân của tiền quy đổi\", \"value\": \"4\" }\n    ]\n  }\n}\n\nKhông kèm AmountOCDecimalDigits, UnitPriceDecimalDigits dù cùng section — vì người dùng không yêu cầu.",
+  "navigation": [
+    {
+      "actions": [
+        "edit"
+      ],
+      "label": "Mở Tùy chọn Định dạng số",
+      "message": "Chuyển đến màn hình Tùy chọn Định dạng số?",
+      "confirm": false,
+      "steps": [
+        {
+          "type": "click",
+          "selector": "#btn-nav-setting",
+          "label": "Mở Các tiện ích và thiết lập"
+        },
+        {
+          "type": "click",
+          "selector": "#item-nav-setting-option",
+          "label": "Chọn Tùy chọn"
+        },
+        {
+          "type": "click",
+          "selector": "#item-option-format-number",
+          "label": "Chọn Tùy chọn Định dạng số"
+        }
+      ],
+      "callback_url": "https://smecloud.misa.local/app/OptionsFormatNumber",
+      "callback_url_label": "Tùy chọn Định dạng số",
+      "callback_message": "Tùy chọn Định dạng số",
+      "permission_config": "{\"sub_system_code\": \"SYSOptionNumberFomat\", \"rule\": \"Use\"}"
+    }
+  ],
+  "components": [
+    {
+      "type": "container",
+      "component_id": "separatorCharacterSection",
+      "label": "Ký tự ngăn cách",
+      "navigation": {
+        "steps": [
+          {
+            "type": "button",
+            "selector": "separatorCharacter",
+            "label": "Mở section Ký tự ngăn cách"
+          }
+        ]
+      },
+      "components": [
+        {
+          "type": "text",
+          "component_id": "GeneralGroupSeparator",
+          "selector": "GeneralGroupSeparator",
+          "label": "Ngăn cách hàng nghìn trên giao diện",
+          "description": "Ký tự ngăn cách hàng nghìn trên giao diện. Giá trị phải là ĐÚNG 1 ký tự, KHÔNG được là chữ số (0-9). Nếu người dùng đưa nhiều ký tự hoặc ký tự là chữ số → không hợp lệ, báo không thể thực hiện hoặc hỏi lại.",
+          "data_field": "GeneralGroupSeparator"
+        },
+        {
+          "type": "text",
+          "component_id": "GeneralDecimalSeparator",
+          "selector": "GeneralDecimalSeparator",
+          "label": "Ngăn cách hàng thập phân trên giao diện",
+          "description": "Ký tự ngăn cách hàng thập phân trên giao diện. Giá trị phải là ĐÚNG 1 ký tự, KHÔNG được là chữ số (0-9), KHÔNG được để trống. Phải khác ký tự ngăn cách hàng nghìn.",
+          "data_field": "GeneralDecimalSeparator"
+        },
+        {
+          "type": "text",
+          "component_id": "GeneralGroupSeparatorReport",
+          "selector": "GeneralGroupSeparatorReport",
+          "label": "Ngăn cách hàng nghìn trên báo cáo",
+          "description": "Ký tự ngăn cách hàng nghìn trên báo cáo. Giá trị phải là ĐÚNG 1 ký tự, KHÔNG được là chữ số (0-9).",
+          "data_field": "GeneralGroupSeparatorReport"
+        },
+        {
+          "type": "text",
+          "component_id": "GeneralDecimalSeparatorReport",
+          "selector": "GeneralDecimalSeparatorReport",
+          "label": "Ngăn cách hàng thập phân trên báo cáo",
+          "description": "Ký tự ngăn cách hàng thập phân trên báo cáo. Giá trị phải là ĐÚNG 1 ký tự, KHÔNG được là chữ số (0-9), KHÔNG được để trống. Phải khác ký tự ngăn cách hàng nghìn.",
+          "data_field": "GeneralDecimalSeparatorReport"
+        }
+      ]
+    },
+    {
+      "type": "container",
+      "component_id": "decimalDigitSection",
+      "label": "Số chữ số của phần thập phân",
+      "navigation": {
+        "steps": [
+          {
+            "type": "button",
+            "selector": "decimalDigit",
+            "label": "Mở section Số chữ số của phần thập phân"
+          }
+        ]
+      },
+      "components": [
+        {
+          "type": "text",
+          "component_id": "AmountDecimalDigits",
+          "selector": "AmountDecimalDigits",
+          "label": "Số chữ số phần thập phân của tiền quy đổi",
+          "description": "Số chữ số phần thập phân hiển thị của tiền quy đổi. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 4 (max=4). Nếu người dùng đưa số vượt quá 4 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "AmountDecimalDigits"
+        },
+        {
+          "type": "text",
+          "component_id": "AmountOCDecimalDigits",
+          "selector": "AmountOCDecimalDigits",
+          "label": "Số chữ số phần thập phân của tiền ngoại tệ",
+          "description": "Số chữ số phần thập phân hiển thị của tiền ngoại tệ. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 4 (max=4). Nếu người dùng đưa số vượt quá 4 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "AmountOCDecimalDigits"
+        },
+        {
+          "type": "text",
+          "component_id": "UnitPriceDecimalDigits",
+          "selector": "UnitPriceDecimalDigits",
+          "label": "Số chữ số phần thập phân của đơn giá quy đổi",
+          "description": "Số chữ số phần thập phân hiển thị của đơn giá quy đổi. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 6 (max=6). Nếu người dùng đưa số vượt quá 6 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "UnitPriceDecimalDigits"
+        },
+        {
+          "type": "text",
+          "component_id": "UnitPriceOCDecimalDigits",
+          "selector": "UnitPriceOCDecimalDigits",
+          "label": "Số chữ số phần thập phân của đơn giá ngoại tệ",
+          "description": "Số chữ số phần thập phân hiển thị của đơn giá ngoại tệ. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 6 (max=6). Nếu người dùng đưa số vượt quá 6 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "UnitPriceOCDecimalDigits"
+        },
+        {
+          "type": "text",
+          "component_id": "QuantityDecimalDigits",
+          "selector": "QuantityDecimalDigits",
+          "label": "Số chữ số phần thập phân của số lượng",
+          "description": "Số chữ số phần thập phân hiển thị của số lượng. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 8 (max=8). Nếu người dùng đưa số vượt quá 8 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "QuantityDecimalDigits"
+        },
+        {
+          "type": "text",
+          "component_id": "ExchangRateDecimalDigits",
+          "selector": "ExchangRateDecimalDigits",
+          "label": "Số chữ số phần thập phân của tỷ giá",
+          "description": "Số chữ số phần thập phân hiển thị của tỷ giá. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 4 (max=4). Nếu người dùng đưa số vượt quá 4 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "ExchangRateDecimalDigits"
+        },
+        {
+          "type": "text",
+          "component_id": "CoefficientDecimalDigits",
+          "selector": "CoefficientDecimalDigits",
+          "label": "Số chữ số phần thập phân của hệ số, tỷ lệ",
+          "description": "Số chữ số phần thập phân hiển thị của hệ số, tỷ lệ. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 10 (max=10). Nếu người dùng đưa số vượt quá 10 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "CoefficientDecimalDigits"
+        },
+        {
+          "type": "text",
+          "component_id": "AllocationDecimalDigits",
+          "selector": "AllocationDecimalDigits",
+          "label": "Số chữ số phần thập phân của tỷ lệ phân bổ",
+          "description": "Số chữ số phần thập phân hiển thị của tỷ lệ phân bổ. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 10 (max=10). Nếu người dùng đưa số vượt quá 10 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "AllocationDecimalDigits"
+        },
+        {
+          "type": "text",
+          "component_id": "PATimeSheetDecimalDigits",
+          "selector": "PATimeSheetDecimalDigits",
+          "label": "Số chữ số phần thập phân của số công",
+          "description": "Số chữ số phần thập phân hiển thị của số công. Giá trị là SỐ NGUYÊN trong khoảng 0 đến 2 (max=2). Nếu người dùng đưa số vượt quá 2 hoặc không phải số nguyên → không hợp lệ, báo cho người dùng (UI giữ nguyên giá trị hiện tại).",
+          "data_field": "PATimeSheetDecimalDigits"
+        }
+      ]
+    },
+    {
+      "type": "container",
+      "component_id": "nativeDigitSection",
+      "label": "Cách thể hiện số âm",
+      "navigation": {
+        "steps": [
+          {
+            "type": "button",
+            "selector": "nativeDigit",
+            "label": "Mở section Cách thể hiện số âm"
+          }
+        ]
+      },
+      "components": [
+        {
+          "type": "combobox",
+          "component_id": "CurrencyNegativePattern",
+          "selector": "CurrencyNegativePattern",
+          "label": "Ký hiệu số tiền âm",
+          "description": "Cách thể hiện ký hiệu số âm. Đối chiếu mô tả người dùng với options[].description để lấy đúng value: (n) = số trong ngoặc, -n = dấu trừ trước, n- = dấu trừ sau. VD '\''hiển thị số âm trong ngoặc'\'' → value = \"0\".",
+          "data_field": "CurrencyNegativePattern",
+          "options": [
+            {
+              "value": "0",
+              "description": "(n) — số âm nằm trong ngoặc đơn"
+            },
+            {
+              "value": "1",
+              "description": "-n — dấu trừ đứng trước số"
+            },
+            {
+              "value": "2",
+              "description": "n- — dấu trừ đứng sau số"
+            }
+          ]
+        },
+        {
+          "type": "combobox",
+          "component_id": "NegativeColor",
+          "selector": "NegativeColor",
+          "label": "Màu số tiền âm",
+          "description": "Màu hiển thị của số tiền âm. Combobox động (danh sách từ EnumNegativeColor, không có options[] cố định). Giá trị truyền vào `step.value` PHẢI là colorCode hex đúng theo EnumNegativeColor — không phải tên màu text. Bản đồ màu cố định: Đỏ = `#ED1C24`, Đen = `#10141b`, Cam = `#FF7F2C`, Xanh = `#00A388`, Tím = `#9C27B0`. Agent chịu trách nhiệm map mô tả người dùng (VD '\''màu đỏ'\'') sang colorCode hex tương ứng (VD '\''màu đỏ'\'' → `#ED1C24`). UI set colorCode này thẳng vào combobox như v-model, không tự tra cứu text. Nếu người dùng yêu cầu màu không có trong enum → không sinh step, báo không hỗ trợ màu đó.",
+          "data_field": "NegativeColor"
+        }
+      ]
+    }
+  ],
+  "disallowed_actions": [
+    "save"
+  ],
+  "actions_need_confirm": [],
+  "is_active": 1
+}'
