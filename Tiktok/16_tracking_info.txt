@@ -1,0 +1,11 @@
+curl 'https://ecommerce.misa.vn/backend-api/TikToks/orders/tracking-info' \
+--request POST \
+--header 'x-misa-app-code:AMISAccounting' \
+--header 'x-misa-api-key:misa_ci_live_Dcpp1Ja3NQLKUPdjhbdn6ByPmnhewILJko5' \
+--header 'Content-Type:application/json' \
+--header 'Cookie:TS016f3c7c=019ba1692db8dcc8985176cc8bae23124feab50b7c9482364400bd9d49295b9038465f6073dab804683ce27332c5a8b6ef4efac1e7' \
+--data '{
+  "AccessToken": "ROW_pgunAQAAAAAIR4LuJAi8l1YXNjDDgpfbGq41cktnuMwfdTqPMyNB-qNaOrqIOYbeQ6lJaLUHOkuCpGUh3A-LlQ7UOGfVg3CO71OipF90TsaGDt-iQuBVaHDXe9O6-qefmpU7Z0IfZ6MkDVYQHSnMowc9JSiUjkCtRh9wmFxcyapGI33F-CyQRoCMyRJuqHMl_wOeZiplGco",
+  "ShopCipher": "ROW_nfZC5AAAAAC2uN--rw1CAStlj7Ip9sAN",
+  "ID": "585961241428723167"
+}'
