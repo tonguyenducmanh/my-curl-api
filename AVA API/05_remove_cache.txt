@@ -1,0 +1,9 @@
+curl 'https://actapp.misa.vn/g1/api/ai/v1/internal/remove_cache/AIPromptConfig' \
+--request POST \
+--header 'Content-Type:application/json' \
+--header 'Postman-Token:f4bef99a-f01d-4ab6-9a35-aff2c0b75993' \
+--header 'cache-control:no-cache' \
+--header 'x-clientid:83b82a4f17f9a2e6b5b3eba3f4efe0e1' \
+--data '{
+  "OtherValue": "inventory_item_synonym_system"
+}'
